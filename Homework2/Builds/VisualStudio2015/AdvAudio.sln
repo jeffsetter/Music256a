@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{AA5B31CC-F968-9989-3508-53B70B8A4D68}") = "AdvAudio", "AdvAudio.vcxproj", "{CA86A5BD-75CE-4C76-341B-52015E3797E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA86A5BD-75CE-4C76-341B-52015E3797E8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA86A5BD-75CE-4C76-341B-52015E3797E8}.Debug|Win32.Build.0 = Debug|Win32
+		{CA86A5BD-75CE-4C76-341B-52015E3797E8}.Release|Win32.ActiveCfg = Release|Win32
+		{CA86A5BD-75CE-4C76-341B-52015E3797E8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,59 +1,9 @@
-﻿Build started 10/5/2016 10:38:37 AM.
+﻿Build started 10/5/2016 11:22:40 AM.
      1>Project "C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework1\Builds\VisualStudio2015\BasicAudio.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\..\JuceLibraryCode /I..\..\..\..\JUCE\modules /ZI /nologo /W4 /WX- /MP /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _WINDOWS /D DEBUG /D _DEBUG /D JUCER_VS2015_78A5022=1 /D JUCE_APP_VERSION=1.0.0 /D JUCE_APP_VERSION_HEX=0x10000 /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"Debug\\" /Fd"Debug\\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Source\MainComponent.cpp ..\..\Source\Main.cpp ..\..\JuceLibraryCode\juce_audio_basics.cpp ..\..\JuceLibraryCode\juce_audio_devices.cpp ..\..\JuceLibraryCode\juce_audio_formats.cpp ..\..\JuceLibraryCode\juce_audio_processors.cpp ..\..\JuceLibraryCode\juce_audio_utils.cpp ..\..\JuceLibraryCode\juce_core.cpp ..\..\JuceLibraryCode\juce_cryptography.cpp ..\..\JuceLibraryCode\juce_data_structures.cpp ..\..\JuceLibraryCode\juce_events.cpp ..\..\JuceLibraryCode\juce_graphics.cpp ..\..\JuceLibraryCode\juce_gui_basics.cpp ..\..\JuceLibraryCode\juce_gui_extra.cpp ..\..\JuceLibraryCode\juce_opengl.cpp ..\..\JuceLibraryCode\juce_video.cpp
-         MainComponent.cpp
-         Main.cpp
-         juce_audio_basics.cpp
-         juce_audio_devices.cpp
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\sine.h(27): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data (compiling source file ..\..\Source\MainComponent.cpp)
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\sine.h(37): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data (compiling source file ..\..\Source\MainComponent.cpp)
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\sine.h(37): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data (compiling source file ..\..\Source\MainComponent.cpp)
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\main.cpp(23): warning C4100: 'commandLine': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(120): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\main.cpp(45): warning C4100: 'commandLine': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(123): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(126): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(145): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(168): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework1\source\maincomponent.cpp(172): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-         juce_audio_formats.cpp
-         juce_audio_processors.cpp
-         juce_audio_utils.cpp
-         juce_core.cpp
-         juce_cryptography.cpp
-         juce_data_structures.cpp
-         juce_events.cpp
-         juce_graphics.cpp
-         juce_gui_basics.cpp
-         juce_gui_extra.cpp
-         juce_opengl.cpp
-         juce_video.cpp
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _DEBUG /l"0x0409" /nologo /fo"Debug\resources.res" .\resources.rc 
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework1\Builds\VisualStudio2015\Debug\\BasicAudio.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:msvcrt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"Debug\\BasicAudio.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework1\Builds\VisualStudio2015\Debug\BasicAudio.lib" /MACHINE:X86 /SAFESEH:NO Debug\resources.res
-         Debug\\MainComponent.obj
-         Debug\\Main.obj
-         Debug\\juce_audio_basics.obj
-         Debug\\juce_audio_devices.obj
-         Debug\\juce_audio_formats.obj
-         Debug\\juce_audio_processors.obj
-         Debug\\juce_audio_utils.obj
-         Debug\\juce_core.obj
-         Debug\\juce_cryptography.obj
-         Debug\\juce_data_structures.obj
-         Debug\\juce_events.obj
-         Debug\\juce_graphics.obj
-         Debug\\juce_gui_basics.obj
-         Debug\\juce_gui_extra.obj
-         Debug\\juce_opengl.obj
-         Debug\\juce_video.obj
+     1>Link:
          BasicAudio.vcxproj -> C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework1\Builds\VisualStudio2015\Debug\BasicAudio.exe
      1>Done Building Project "C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework1\Builds\VisualStudio2015\BasicAudio.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:01:07.32
+Time Elapsed 00:00:05.14

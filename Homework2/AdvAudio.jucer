@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="ekPzcY" name="AdvAudio" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.yourcompany.AdvAudio" includeBinaryInAppConfig="1"
+              jucerVersion="4.2.4">
+  <MAINGROUP id="tpsXqd" name="AdvAudio">
+    <GROUP id="{A434DC30-0080-67C6-2CC2-11C508B86136}" name="Source">
+      <FILE id="QyYysV" name="FaustSawZita.h" compile="0" resource="0" file="Source/FaustSawZita.h"/>
+      <FILE id="PbZV09" name="FaustSawZitaWrapper.h" compile="0" resource="0"
+            file="Source/FaustSawZitaWrapper.h"/>
+      <GROUP id="{CD9A77D7-5206-9088-1360-710D0319FD90}" name="faust">
+        <GROUP id="{4C369FCA-1434-2449-A349-0593D1EAA089}" name="au">
+          <FILE id="HxX4RR" name="AUUI.h" compile="0" resource="0" file="Source/faust/au/AUUI.h"/>
+        </GROUP>
+        <GROUP id="{34F64D20-E3BD-1121-60AB-9EB55B4A607F}" name="audio">
+          <FILE id="jgnUfd" name="alsa-dsp.h" compile="0" resource="0" file="Source/faust/audio/alsa-dsp.h"/>
+          <FILE id="Rag4Ge" name="android-dsp.h" compile="0" resource="0" file="Source/faust/audio/android-dsp.h"/>
+          <FILE id="LRgDOg" name="audio.h" compile="0" resource="0" file="Source/faust/audio/audio.h"/>
+          <FILE id="Rt8rwG" name="channels.h" compile="0" resource="0" file="Source/faust/audio/channels.h"/>
+          <FILE id="hzztB6" name="coreaudio-dsp.h" compile="0" resource="0" file="Source/faust/audio/coreaudio-dsp.h"/>
+          <FILE id="jkculI" name="coreaudio-ios-dsp.h" compile="0" resource="0"
+                file="Source/faust/audio/coreaudio-ios-dsp.h"/>
+          <FILE id="UQ4Q3e" name="dummy-audio.h" compile="0" resource="0" file="Source/faust/audio/dummy-audio.h"/>
+          <FILE id="aznKrQ" name="jack-dsp.h" compile="0" resource="0" file="Source/faust/audio/jack-dsp.h"/>
+          <FILE id="iLNlrB" name="netjack-dsp.h" compile="0" resource="0" file="Source/faust/audio/netjack-dsp.h"/>
+          <FILE id="gH7B02" name="opensles-android-dsp.h" compile="0" resource="0"
+                file="Source/faust/audio/opensles-android-dsp.h"/>
+          <FILE id="PjN38B" name="osc-dsp.h" compile="0" resource="0" file="Source/faust/audio/osc-dsp.h"/>
+          <FILE id="Zjwrel" name="portaudio-dsp.h" compile="0" resource="0" file="Source/faust/audio/portaudio-dsp.h"/>
+          <FILE id="qkBllN" name="rtaudio-dsp.h" compile="0" resource="0" file="Source/faust/audio/rtaudio-dsp.h"/>
+        </GROUP>
+        <GROUP id="{F3E5C6F2-3C82-C1D8-C909-6724EFCD4501}" name="dsp">
+          <FILE id="iFXScP" name="dsp-adapter.h" compile="0" resource="0" file="Source/faust/dsp/dsp-adapter.h"/>
+          <FILE id="qO0qDF" name="dsp-bench.h" compile="0" resource="0" file="Source/faust/dsp/dsp-bench.h"/>
+          <FILE id="n4NAiN" name="dsp-combiner.h" compile="0" resource="0" file="Source/faust/dsp/dsp-combiner.h"/>
+          <FILE id="B9ABaw" name="dsp-optimizer.h" compile="0" resource="0" file="Source/faust/dsp/dsp-optimizer.h"/>
+          <FILE id="F3ANYd" name="dsp.h" compile="0" resource="0" file="Source/faust/dsp/dsp.h"/>
+          <FILE id="OWUrx0" name="faust-engine.cpp" compile="0" resource="0"
+                file="Source/faust/dsp/faust-engine.cpp"/>
+          <FILE id="VcjFB8" name="faust-engine.h" compile="0" resource="0" file="Source/faust/dsp/faust-engine.h"/>
+          <FILE id="cBGItO" name="faust-poly-engine.h" compile="0" resource="0"
+                file="Source/faust/dsp/faust-poly-engine.h"/>
+          <FILE id="ok3HiN" name="poly-dsp.h" compile="0" resource="0" file="Source/faust/dsp/poly-dsp.h"/>
+          <FILE id="NNPq1v" name="proxy-dsp.h" compile="0" resource="0" file="Source/faust/dsp/proxy-dsp.h"/>
+          <FILE id="N8V8FT" name="timed-dsp.h" compile="0" resource="0" file="Source/faust/dsp/timed-dsp.h"/>
+        </GROUP>
+        <GROUP id="{87FB6ACB-0BDD-13E1-453C-9D6F3736844B}" name="gui">
+          <GROUP id="{2B966C43-0A50-AFFB-AAA1-EF27E3BDBD43}" name="Styles">
+            <FILE id="nVaQf3" name="Blue.qrc" compile="0" resource="1" file="Source/faust/gui/Styles/Blue.qrc"/>
+            <FILE id="hzA1RY" name="Blue.qss" compile="0" resource="1" file="Source/faust/gui/Styles/Blue.qss"/>
+            <FILE id="lYCac5" name="Default.qrc" compile="0" resource="1" file="Source/faust/gui/Styles/Default.qrc"/>
+            <FILE id="K3PtV8" name="Default.qss" compile="0" resource="1" file="Source/faust/gui/Styles/Default.qss"/>
+            <FILE id="K3SQru" name="Grey.qrc" compile="0" resource="1" file="Source/faust/gui/Styles/Grey.qrc"/>
+            <FILE id="UTvf49" name="Grey.qss" compile="0" resource="1" file="Source/faust/gui/Styles/Grey.qss"/>
+            <FILE id="zl0JqX" name="Salmon.qrc" compile="0" resource="1" file="Source/faust/gui/Styles/Salmon.qrc"/>
+            <FILE id="Q9j5ck" name="Salmon.qss" compile="0" resource="1" file="Source/faust/gui/Styles/Salmon.qss"/>
+          </GROUP>
+          <FILE id="Av1lXC" name="APIUI.h" compile="0" resource="0" file="Source/faust/gui/APIUI.h"/>
+          <FILE id="LZHDY0" name="console.h" compile="0" resource="0" file="Source/faust/gui/console.h"/>
+          <FILE id="i771fR" name="ControlUI.h" compile="0" resource="0" file="Source/faust/gui/ControlUI.h"/>
+          <FILE id="QuZhkh" name="CUI.h" compile="0" resource="0" file="Source/faust/gui/CUI.h"/>
+          <FILE id="sE9JTo" name="faustgtk.h" compile="0" resource="0" file="Source/faust/gui/faustgtk.h"/>
+          <FILE id="wWdscv" name="faustqt.h" compile="0" resource="0" file="Source/faust/gui/faustqt.h"/>
+          <FILE id="R7qerU" name="FUI.h" compile="0" resource="0" file="Source/faust/gui/FUI.h"/>
+          <FILE id="IQBG2r" name="GUI.h" compile="0" resource="0" file="Source/faust/gui/GUI.h"/>
+          <FILE id="BGtmei" name="httpdUI.h" compile="0" resource="0" file="Source/faust/gui/httpdUI.h"/>
+          <FILE id="X5mXUd" name="JSONUI.h" compile="0" resource="0" file="Source/faust/gui/JSONUI.h"/>
+          <FILE id="jrb0lc" name="MapUI.h" compile="0" resource="0" file="Source/faust/gui/MapUI.h"/>
+          <FILE id="unUL8c" name="meta.h" compile="0" resource="0" file="Source/faust/gui/meta.h"/>
+          <FILE id="WVtDkr" name="MetaDataUI.h" compile="0" resource="0" file="Source/faust/gui/MetaDataUI.h"/>
+          <FILE id="Xv0us7" name="MidiUI.h" compile="0" resource="0" file="Source/faust/gui/MidiUI.h"/>
+          <FILE id="wIonfN" name="OCVUI.h" compile="0" resource="0" file="Source/faust/gui/OCVUI.h"/>
+          <FILE id="fnqav3" name="OSCUI.h" compile="0" resource="0" file="Source/faust/gui/OSCUI.h"/>
+          <FILE id="hVwSjg" name="PathBuilder.h" compile="0" resource="0" file="Source/faust/gui/PathBuilder.h"/>
+          <FILE id="URprLq" name="PrintUI.h" compile="0" resource="0" file="Source/faust/gui/PrintUI.h"/>
+          <FILE id="tzxYM0" name="ring-buffer.h" compile="0" resource="0" file="Source/faust/gui/ring-buffer.h"/>
+          <FILE id="rS6Bfv" name="RosCI.h" compile="0" resource="0" file="Source/faust/gui/RosCI.h"/>
+          <FILE id="FWtYZD" name="RosUI.h" compile="0" resource="0" file="Source/faust/gui/RosUI.h"/>
+          <FILE id="j8Sazv" name="SimpleParser.h" compile="0" resource="0" file="Source/faust/gui/SimpleParser.h"/>
+          <FILE id="fw0jTN" name="UI.h" compile="0" resource="0" file="Source/faust/gui/UI.h"/>
+          <FILE id="yV35ov" name="UIGlue.h" compile="0" resource="0" file="Source/faust/gui/UIGlue.h"/>
+          <FILE id="UkbAi4" name="ValueConverter.h" compile="0" resource="0"
+                file="Source/faust/gui/ValueConverter.h"/>
+        </GROUP>
+        <GROUP id="{7200F277-7D8B-25CA-A3F4-1467200F673F}" name="midi">
+          <FILE id="dfKGJo" name="bela-midi.h" compile="0" resource="0" file="Source/faust/midi/bela-midi.h"/>
+          <FILE id="C5CFzY" name="jack-midi.h" compile="0" resource="0" file="Source/faust/midi/jack-midi.h"/>
+          <FILE id="P9dSD0" name="midi.h" compile="0" resource="0" file="Source/faust/midi/midi.h"/>
+          <FILE id="pRv3Yn" name="rt-midi.h" compile="0" resource="0" file="Source/faust/midi/rt-midi.h"/>
+          <FILE id="E79fy3" name="RtMidi.cpp" compile="0" resource="0" file="Source/faust/midi/RtMidi.cpp"/>
+          <FILE id="imqgtI" name="RtMidi.h" compile="0" resource="0" file="Source/faust/midi/RtMidi.h"/>
+        </GROUP>
+        <GROUP id="{C09D3B6B-9B2C-D829-6949-126D6D04C1FF}" name="vst">
+          <FILE id="wEHaky" name="faust.h" compile="0" resource="0" file="Source/faust/vst/faust.h"/>
+          <FILE id="ubjN6e" name="voice.h" compile="0" resource="0" file="Source/faust/vst/voice.h"/>
+          <FILE id="gLTagO" name="vstui.h" compile="0" resource="0" file="Source/faust/vst/vstui.h"/>
+        </GROUP>
+        <FILE id="CBb4lw" name="misc.h" compile="0" resource="0" file="Source/faust/misc.h"/>
+        <FILE id="msFiy4" name="sound-file.h" compile="0" resource="0" file="Source/faust/sound-file.h"/>
+      </GROUP>
+      <FILE id="n1AmNb" name="arch.cpp" compile="0" resource="0" file="Source/arch.cpp"/>
+      <FILE id="tSGK2o" name="FaustReverb.h" compile="0" resource="0" file="Source/FaustReverb.h"/>
+      <FILE id="viSZf7" name="Sine.h" compile="0" resource="0" file="Source/Sine.h"/>
+      <FILE id="vvxKbG" name="Smooth.h" compile="0" resource="0" file="Source/Smooth.h"/>
+      <FILE id="vpiBPI" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="mnqQsI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="AdvAudio"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="AdvAudio"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2015 targetFolder="Builds/VisualStudio2015">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="AdvAudio"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="AdvAudio"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="AdvAudio"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="AdvAudio"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
