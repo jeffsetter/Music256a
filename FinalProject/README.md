@@ -6,6 +6,9 @@ The user is able to use the 4,6,8,2,5 buttons to control left,right,up,down,stra
 
 To compile this project, move it into an openframeworks folder under openframeworks/apps/myApps/ofxRollercoaster. The project is built and tested on Visual Studios 2015.
 
+Sample GUI Screenshot:
+![alt tag](https://github.com/jeffsetter/Music256a/blob/master/FinalProject/GUIScreenshot.JPG)
+
 ---
 
 Code used from planets openframeworks demo.
