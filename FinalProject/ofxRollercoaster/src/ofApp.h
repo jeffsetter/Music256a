@@ -9,6 +9,8 @@ enum Direction {
 	Straight, Up, Down, Right, Left
 };
 
+
+
 typedef struct {
 	ofBoxPrimitive hBar;
 	ofBoxPrimitive vBar;
@@ -21,8 +23,6 @@ typedef struct {
 		vBar.setDepth(20);
 	}
 } Strut;
-
-
 
 class ofApp : public ofBaseApp{
 
@@ -57,6 +57,7 @@ public:
 	float userPos[3];
 	Direction userDir;
 	float userSpeed;
+	float deformTotal[3] = { 0,0,0 };
 
 	// objects for the rollercoaster
 	ofCylinderPrimitive railRight, railLeft, railFutureRight, railFutureLeft;
@@ -72,11 +73,10 @@ public:
 	float strutStart;
 
 	// create objects
-	Cloud cloud;
-	Tree tree;
-	Grass grass;
-	Pond pond;
-	Bird bird;
+	vector<GraphicObj*> objs;
+	int numObjs = 5;
+	Scene curScene = Forest;
+	bool newBackground = false;
 
 	void audioOut(float * input, int bufferSize, int nChannels);
 	ofSoundStream soundStream;

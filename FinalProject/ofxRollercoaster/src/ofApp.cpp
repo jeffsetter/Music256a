@@ -25,7 +25,7 @@ void ofApp::audioSetup() {
 	soundStream.printDeviceList();
 
 	//if you want to set the device id to be different than the default
-	//soundStream.setDeviceID(0); 	//note some devices are input only and some are output only 
+	soundStream.setDeviceID(0); 	//note some devices are input only and some are output only 
 
 	soundStream.setup(this, nInputChans, 0, sampleRate, bufferSize, 4);
 
@@ -41,22 +41,20 @@ void ofApp::setup(){
 
     // Make the app full screen
     //ofSetFullscreen(true);
+	ofBackground(0, 170, 255); 	// Sky blue background
     
     // Turn on depth testing so rendering happens according to z-depth rather
     // than draw order.
     ofEnableDepthTest();
 	ofSetVerticalSync(true);
 	light.enable();
-    
-    // Sky blue background
-    ofBackground(0, 170, 255);
 
-	// Create green grass plane
+	// Create grass plane
 	groundPlane.setWidth(ofGetWindowWidth()*100);
 	groundPlane.setHeight(ofGetWindowHeight()*100);
 
 	// play sound
-	audioSetup();
+	//audioSetup();
 	globalGain = 0.5;
 	int i = 0;
 	for (auto player : audioPlayers) {
@@ -89,16 +87,26 @@ void ofApp::setup(){
 	strut.setup();
 
 	// Size objects correctly
-	cloud.setup();
-	cloud.distance = DIST_INF;
-	tree.setup();
-	tree.distance = DIST_INF/2;
-	grass.setup();
-	grass.distance = DIST_INF/4;
-	pond.distance = DIST_INF/3;
-	bird.setup();
-	bird.distance = DIST_INF*2/3;
-
+	Cloud* cloud = new Cloud();
+	Tree* tree = new Tree();
+	Grass* grass = new Grass();
+	Pond* pond = new Pond();
+	Bird* bird = new Bird();
+	cloud->setup();
+	cloud->setPosition(-300, DIST_INF);
+	tree->setup();
+	tree->setPosition(600, DIST_INF/2);
+	tree->positionY = DIST_INF/2;
+	grass->setup();
+	grass->setPosition(-500, DIST_INF/4);
+	pond->setPosition(-1000, DIST_INF/3);
+	bird->setup();
+	bird->setPosition(200, DIST_INF*2/3);
+	objs.push_back(cloud);
+	objs.push_back(tree);
+	objs.push_back(grass);
+	objs.push_back(pond);
+	objs.push_back(bird);
 
 	for (int i = 0; i < 3; i++) {
 		userRot[i] = 0;
@@ -123,47 +131,71 @@ void deformRail(float amt_x, float amt_y, float amt_z, ofMesh* mesh) {
 	}
 }
 
+GraphicObj* chooseRandObj() {
+	int num = rand() % 5;
+	switch (num) {
+	case 0:
+		return new Cloud();
+		break;
+	case 1:
+		return new Tree();
+		break;
+	case 2:
+		return new Bird();
+		break;
+	case 3:
+		return new Pond();
+		break;
+	case 4:
+		return new Grass();
+		break;
+	default:
+		return new Bird();
+		break;
+	}
+}
+
 //--------------------------------------------------------------
 void ofApp::update(){
     // This gets called once for each graphical frame, right before draw()
 
 	// update user position and rotation
 	userRot[0] += userTilt[0];
+	userRot[1] += userTilt[1];
 	targetFrequency = userRot[0] *30 + 440;
 
-	userRot[1] += userTilt[1];
-	//userPos[2] += tan(userRot[0]/90*3.1415926)*2;
-	//userPos[0] += sin(userRot[1] / 90 * 3.1415926);
-	float userY = cos(userRot[1]/90*3.1415926);
+	float userZ = sin(userRot[0] / 90.0 * PI);
+	float userY = cos(userRot[1] / 90.0 * PI);
+	float userX = sin(userRot[1] / 90.0 * PI);
 
-	cloud.distance += 2 * userSpeed * userY;
-	tree.distance += 2 * userSpeed * userY;
-	grass.distance += 2 * userSpeed * userY;
-	pond.distance += 2 * userSpeed * userY;
-	bird.distance += 2 * userSpeed * userY;
-	if (cloud.distance > 1000) {
-		cloud.distance = DIST_INF;
+	userPos[2] += userZ;
+
+	for (int i = 0; i < objs.size(); ++i) {
+		GraphicObj* obj = objs[i];
+		obj->timestep(userSpeed, userX, userY, curScene);
+		obj->updateVolume(globalGain);
+		float objAngle = atan2(-obj->positionX, -obj->positionY)*180/PI;
+		if (abs(objAngle-userRot[1]) > 90) {
+			delete objs[i];
+			objs.erase(objs.begin() + i);
+		}
 	}
-	if (tree.distance > 1000) {
-		tree.distance = DIST_INF;
+
+	// create a new obj
+	if (objs.size() < numObjs) {
+		float randDeg = (rand() % 1500 - 750)/100.0;
+		GraphicObj* newObj = chooseRandObj();
+		newObj->setup();
+		float angle = userRot[1] / 90.0 * PI + randDeg;
+		newObj->setPosition(sin(angle)*DIST_INF, cos(angle)*DIST_INF);
+		objs.push_back(newObj);
 	}
-	if (grass.distance > 1000) {
-		grass.distance = DIST_INF;
-	}
-	if (pond.distance > 1000) {
-		pond.distance = DIST_INF;
-	}
-	if (bird.distance > 1000) {
-		bird.distance = DIST_INF;
-	}
+
 	audioPlayers[0]->setVolume(globalGain);
-	audioPlayers[1]->setVolume(globalGain * 300 / abs(tree.distance));
-	audioPlayers[2]->setVolume(globalGain * 300 / abs(cloud.distance));
-	audioPlayers[3]->setVolume(globalGain * 1200 / abs(bird.distance));
-	audioPlayers[4]->setVolume(globalGain * 300 / abs(pond.distance));
-
-	bird.wingRotGen += 0.01 * userSpeed * userSpeed * userSpeed;
-	bird.wingRotation = 35 * sin(bird.wingRotGen) - 55;
+	//audioPlayers[1]->setVolume(globalGain * 300 / abs(tree.positionY));
+	//audioPlayers[2]->setVolume(globalGain * 300 / abs(cloud.positionY));
+	//audioPlayers[3]->setVolume(globalGain * 800 / abs(bird.positionY));
+	//audioPlayers[4]->setVolume(globalGain * 300 / abs(pond.positionY));
 
 	strutStart -= 2*userSpeed;
 	if (strutStart < -RAIL_STRUT_SPACING) {
@@ -172,26 +204,31 @@ void ofApp::update(){
 
 	float deformConst = 0.001*userSpeed;
 	float rotationConst = 0.0001*userSpeed;
+	float tiltMax = 1000000 * abs(rotationConst);
 
 	switch (userDir) {
 	case Direction::Straight:
 		break;
 	case Direction::Left:
+		deformTotal[0] -= deformConst;
 		deformRail(-deformConst, 0, 0, &railFutureMeshLeft);
 		deformRail(-deformConst, 0, 0, &railFutureMeshRight);
 		userTilt[1] -= rotationConst;
 		break;
 	case Direction::Right:
+		deformTotal[0] += deformConst;
 		deformRail(deformConst, 0, 0, &railFutureMeshLeft);
 		deformRail(deformConst, 0, 0, &railFutureMeshRight);
 		userTilt[1] += rotationConst;
 		break;
 	case Direction::Up:
+		deformTotal[1] += deformConst;
 		deformRail(0, 0, deformConst, &railFutureMeshLeft);
 		deformRail(0, 0, deformConst, &railFutureMeshRight);
 		userTilt[0] += rotationConst;
 		break;
 	case Direction::Down:
+		deformTotal[1] -= deformConst;
 		deformRail(0, 0, -deformConst, &railFutureMeshLeft);
 		deformRail(0, 0, -deformConst, &railFutureMeshRight);
 		userTilt[0] -= rotationConst;
@@ -201,7 +238,13 @@ void ofApp::update(){
 		std::exit(13);
 	}
 
-	
+	for (int i = 0; i < 3; ++i) {
+		if (userTilt[i] > tiltMax) {
+			userTilt[i] = tiltMax;
+		} else if (userTilt[i] < -tiltMax) {
+			userTilt[i] = -tiltMax;
+		}
+	}
 
 }
 
@@ -229,10 +272,21 @@ void ofApp::drawStrut() {
 
 
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::draw() {
 	if (USER_CAMERA) {
 		cam.begin();
 	}
+	if (newBackground) {
+		if (curScene == Forest) {
+			ofBackground(0, 170, 255); 	// Sky blue background
+		} else if (curScene == Upsidedown) {
+			ofBackground(105, 105, 105); // dim gray
+		} else if (curScene == Cave) {
+			ofBackground(10, 10, 10); // blackish
+		}
+		newBackground = false;
+	}
+
 	// This gets called once for each graphical frame, right after update()
 	// This is where you draw all the graphics
 	ofPushMatrix(); // Save our state for later
@@ -278,41 +332,55 @@ void ofApp::draw(){
 		ofRotateX(userRot[0]);
 		ofRotateY(userRot[1]);
 		ofRotateZ(userRot[2]); // used for rolls
-		ofTranslate(userPos[0], userPos[1], userPos[2]);
+		if (curScene == Upsidedown) {
+			ofRotateZ(180);
+			ofTranslate(0, 1000);
+		}
+		ofTranslate(userPos[0], userPos[2], userPos[1]);
+
 		// draw the ground plane
 		ofPushMatrix();
 		ofPushStyle();
 		ofTranslate(0, GROUND_DEPTH);
+
+
+		if (curScene == Forest) {
+			ofSetColor(124, 252, 0); // lawn green
+		} else if (curScene == Upsidedown) {
+			ofSetColor(0, 70, 0); // dark green
+		} else if (curScene == Cave) {
+			ofSetColor(92, 64, 51); // dark brown
+			
+			ofRotateX(90);
+			groundPlane.draw();
+
+			ofPushMatrix();
+			ofRotateY(80);
+			ofTranslate(0, 0, 2000);
+			groundPlane.draw();
+			ofPopMatrix();
+			
+			ofPushMatrix();
+			ofRotateY(100);
+			ofTranslate(0, 0, -2000);
+			groundPlane.draw();
+			ofPopMatrix();
+			
+			ofRotateX(-90);
+			ofTranslate(0, CEILING_DEPTH-GROUND_DEPTH);
+		}
 		ofRotateX(90);
-		ofSetColor(124, 252, 0); // lawn green
 		groundPlane.draw();
 		ofPopStyle();
 		ofPopMatrix();
 
-		ofPushMatrix();
-		ofTranslate(-300, -2000, cloud.distance);
-		cloud.draw();
-		ofPopMatrix();
-
-		ofPushMatrix();
-		ofTranslate(600, GROUND_DEPTH-tree.trunk.getHeight()/2, tree.distance);
-		tree.draw();
-		ofPopMatrix();
-
-		ofPushMatrix();
-		ofTranslate(-500, GROUND_DEPTH - grass.blade.getHeight() / 2, grass.distance);
-		grass.draw();
-		ofPopMatrix();
-
-		ofPushMatrix();
-		ofTranslate(-1000, GROUND_DEPTH-1, pond.distance);
-		pond.draw();
-		ofPopMatrix();
-
-		ofPushMatrix();
-		ofTranslate(200, -700, bird.distance);
-		bird.draw();
-		ofPopMatrix();
+		// draw the objects
+		for (GraphicObj* obj : objs) {
+			ofPushMatrix();
+			ofTranslate(obj->positionX, obj->positionZ, obj->positionY);
+			obj->draw(curScene);
+			ofPopMatrix();
+		}
 
     ofPopMatrix(); // Back to initial state at the top-left of our window.
 
@@ -361,6 +429,36 @@ void ofApp::keyPressed(int key){
 		userSpeed -= SPEED_INCREMENT;
 		for (auto audio : audioPlayers) {
 			audio->setSpeed(userSpeed);
+		}
+		break;
+	case '[':
+		numObjs--;
+		break;
+	case ']':
+		numObjs++;
+		break;
+	case 'q':
+		curScene = Forest;
+		newBackground = true;
+		break;
+	case 'w':
+		curScene = Cave;
+		newBackground = true;
+		break;
+	case 'r':
+		curScene = Upsidedown;
+		newBackground = true;
+		break;
+
+	case ' ':
+		userDir = Straight;
+		deformRail(-deformTotal[0], 0, -deformTotal[1], &railFutureMeshLeft);
+		deformRail(-deformTotal[0], 0, -deformTotal[1], &railFutureMeshRight);
+		for (int i = 0; i < 3; ++i) {
+			userRot[i] = 0;
+			userTilt[i] = 0;
+			userPos[i] = 0;
+			deformTotal[i] = 0;
 		}
 		break;
 	default:
