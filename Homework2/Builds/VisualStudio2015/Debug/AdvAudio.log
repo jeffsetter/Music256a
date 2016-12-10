@@ -1,42 +1,6 @@
-﻿Build started 10/13/2016 10:13:22 AM.
+﻿Build started 10/13/2016 10:48:34 AM.
      1>Project "C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework2\Builds\VisualStudio2015\AdvAudio.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\..\JuceLibraryCode /I..\..\..\..\JUCE\modules /ZI /nologo /W4 /WX- /MP /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _WINDOWS /D DEBUG /D _DEBUG /D JUCER_VS2015_78A5022=1 /D JUCE_APP_VERSION=1.0.0 /D JUCE_APP_VERSION_HEX=0x10000 /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"Debug\\" /Fd"Debug\\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Source\MainComponent.cpp
-         MainComponent.cpp
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(393): warning C4100: 'step': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(393): warning C4100: 'fmax': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(393): warning C4100: 'fmin': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(393): warning C4100: 'init': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(398): warning C4100: 'step': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(398): warning C4100: 'fmax': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(398): warning C4100: 'fmin': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(398): warning C4100: 'init': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(403): warning C4100: 'step': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(403): warning C4100: 'fmax': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(403): warning C4100: 'fmin': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(403): warning C4100: 'init': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(410): warning C4100: 'fmax': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(410): warning C4100: 'fmin': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(415): warning C4100: 'fmax': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(415): warning C4100: 'fmin': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(422): warning C4100: 'val': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(422): warning C4100: 'key': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(422): warning C4100: 'zone': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzitawrapper.h(603): warning C4100: 'date_usec': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzita.h(65): warning C4100: 'samplingFreq': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\faustsawzita.h(467): warning C4100: 'inputs': unreferenced formal parameter
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(346): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(363): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(388): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(389): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(390): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(434): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(435): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(436): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(438): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(440): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jeff\dropbox\stanford\courses\year2_quarter1\compmusic\homeworks\homework2\source\maincomponent.cpp(442): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework2\Builds\VisualStudio2015\Debug\\AdvAudio.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:msvcrt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"Debug\\AdvAudio.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jeff\Dropbox\Stanford\Courses\Year2_Quarter1\CompMusic\Homeworks\Homework2\Builds\VisualStudio2015\Debug\AdvAudio.lib" /MACHINE:X86 /SAFESEH:NO Debug\resources.res
          Debug\\MainComponent.obj
          Debug\\Main.obj
@@ -60,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.16
+Time Elapsed 00:00:04.79

@@ -6,6 +6,9 @@
 enum Scene {
 	Forest, Cave, Candyland, Upsidedown
 };
+enum ObjType {
+	_Bird, _Tree, _Cloud, _Pond, _Grass
+};
 
 class GraphicObj {
 public:
@@ -13,8 +16,8 @@ public:
 	virtual void draw(Scene scene) = 0;
 	virtual void setup() { };
 	virtual void timestep(float userSpeed, float userX, float userY) {
-		positionY += 2 * userSpeed * userY;
-		positionX -= 2 * userSpeed * userX;
+		positionY += 3 * userSpeed * userY;
+		positionX -= 3 * userSpeed * userX;
 	}
 	virtual void timestep(float userSpeed, float userX, float userY, Scene scene) {
 		timestep(userSpeed, userX, userY);
@@ -33,17 +36,24 @@ public:
 	void setPosition(float x, float y) {
 		setPosition(x, y, getDefaultZ());
 	}
-
-	ofSoundPlayer player;
+	float dist() {
+		return abs(positionX) + abs(positionY);
+	}
+	bool isPlaying = false;
+	int playerIndex = -1;
+	ofSoundPlayer* player = new ofSoundPlayer();
 	void setupAudio(string audioFile) {
-		player.setLoop(true);
-		/*player.load(audioFile);
+		//player->setLoop(true);
+		/*
+		player.load(audioFile);
 		player.setVolume(0);
 		if (player.isLoaded() == false) {
 			std::cout << "sound not loaded" << std::endl;
 			std::exit(49);
-		}*/
+		}
+		*/
 	}
+	ObjType type;
 
 };
 
@@ -54,6 +64,7 @@ public:
 	ofConePrimitive stalactiteL;
 
 	void setup() {
+		type = ObjType::_Cloud;
 		for (int i = 0; i < 7; i++) {
 			spheres[i].setRadius(150);
 		}
@@ -70,7 +81,10 @@ public:
 		return -2000;
 	}
 	void updateVolume(float globalGain) {
-		player.setVolume(globalGain * 300 / abs(positionY));
+		if (isPlaying) {
+			player->setVolume(globalGain * 300 / (abs(positionY) + abs(positionX)));
+			player->setPan(positionX / abs(positionY));
+		}
 	}
 };
 
@@ -82,6 +96,7 @@ public:
 	ofConePrimitive stalagmiteL;
 
 	void setup() {
+		type = ObjType::_Tree;
 		leaves.setRadius(200);
 		trunk.setHeight(300);
 		trunk.setRadius(75);
@@ -96,7 +111,10 @@ public:
 		return GROUND_DEPTH - trunk.getHeight() / 2;
 	}
 	void updateVolume(float globalGain) {
-		player.setVolume(globalGain * 300 / abs(positionY));
+		if (isPlaying) {
+			player->setVolume(globalGain * 300 / (abs(positionY) + abs(positionX)));
+			player->setPan(positionX / abs(positionY));
+		}
 	}
 };
 
@@ -105,6 +123,7 @@ public:
 	ofConePrimitive blade;
 
 	void setup() {
+		type = ObjType::_Grass;
 		blade.setRadius(10);
 		blade.setHeight(100);
 	}
@@ -122,14 +141,18 @@ public:
 	float sandWidth = 75;
 	void draw(Scene scene);
 	void setup() {
+		type = ObjType::_Pond;
 		setupAudio("lake.mp3");
 	}
 	float getDefaultZ() {
 		return GROUND_DEPTH - 1;
 	}
 	void updateVolume(float globalGain) {
-		player.setVolume(globalGain * 300 / abs(positionY));
-	}
+		if (isPlaying) {
+			player->setVolume(globalGain * 300 / (abs(positionY) + abs(positionX)));
+			player->setPan(positionX / abs(positionY));
+		}
+	}	
 };
 
 class Bird : public GraphicObj {
@@ -139,6 +162,7 @@ public:
 	ofBoxPrimitive wing;
 	ofBoxPrimitive body;
 	void setup() {
+		type = ObjType::_Bird;
 		wing.setDepth(30);
 		wing.setWidth(75);
 		wing.setHeight(5);
@@ -163,6 +187,9 @@ public:
 		}
 	}
 	void updateVolume(float globalGain) {
-		player.setVolume(globalGain * 800 / abs(positionY));
+		if (isPlaying) {
+			player->setVolume(globalGain * 500 / (abs(positionY) + abs(positionX)));
+			player->setPan(positionX / abs(positionY));
+		}
 	}
 };

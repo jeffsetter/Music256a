@@ -49,24 +49,34 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	light.enable();
 
-	// Create grass plane
+	// Create ground plane size
 	groundPlane.setWidth(ofGetWindowWidth()*100);
 	groundPlane.setHeight(ofGetWindowHeight()*100);
 
 	// play sound
 	//audioSetup();
 	globalGain = 0.5;
-	int i = 0;
-	for (auto player : audioPlayers) {
-		player->setLoop(true);
-		player->load(audioFiles[i]); i++;
-		if (i > 0) { player->setVolume(0); }
-		player->play();
-		if (player->isLoaded() == false) {
-			std::cout << "sound not loaded" << std::endl;
-			std::exit(13);
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 2; j++) {
+			for (int k = 0; k < 4; k++) {
+				
+				audioPlayers[i][j][k] = new ofSoundPlayer();
+				audioPlayers[i][j][k]->setLoop(true);
+				audioPlayers[i][j][k]->load(audioFiles[j][k]);
+				audioPlayers[i][j][k]->setVolume(0);
+				audioPlayers[i][j][k]->play();
+				if (audioPlayers[i][j][k]->isLoaded() == false) {
+					std::cout << "sound not loaded" << std::endl;
+					std::exit(13);
+				}
+			}
 		}
 	}
+	rollercoasterAudio = new ofSoundPlayer();
+	rollercoasterAudio->setLoop(true);
+	rollercoasterAudio->load("rollercoaster.mp3");
+	rollercoasterAudio->setVolume(globalGain/3.0);
+	rollercoasterAudio->play();
 
 
 	// set user variables
@@ -102,11 +112,11 @@ void ofApp::setup(){
 	pond->setPosition(-1000, DIST_INF/3);
 	bird->setup();
 	bird->setPosition(200, DIST_INF*2/3);
-	objs.push_back(cloud);
-	objs.push_back(tree);
-	objs.push_back(grass);
-	objs.push_back(pond);
-	objs.push_back(bird);
+	objs[cloud->type].push_back(cloud);
+	objs[tree->type].push_back(tree);
+	objs[grass->type].push_back(grass);
+	objs[pond->type].push_back(pond);
+	objs[bird->type].push_back(bird);
 
 	for (int i = 0; i < 3; i++) {
 		userRot[i] = 0;
@@ -132,7 +142,7 @@ void deformRail(float amt_x, float amt_y, float amt_z, ofMesh* mesh) {
 }
 
 GraphicObj* chooseRandObj() {
-	int num = rand() % 5;
+	int num = rand() % 6;
 	switch (num) {
 	case 0:
 		return new Cloud();
@@ -167,35 +177,89 @@ void ofApp::update(){
 	float userZ = sin(userRot[0] / 90.0 * PI);
 	float userY = cos(userRot[1] / 90.0 * PI);
 	float userX = sin(userRot[1] / 90.0 * PI);
-
+	if (curScene == Upsidedown) {
+		userX = -userX;
+	}
 	userPos[2] += userZ;
 
-	for (int i = 0; i < objs.size(); ++i) {
-		GraphicObj* obj = objs[i];
-		obj->timestep(userSpeed, userX, userY, curScene);
-		obj->updateVolume(globalGain);
-		float objAngle = atan2(-obj->positionX, -obj->positionY)*180/PI;
-		if (abs(objAngle-userRot[1]) > 90) {
-			delete objs[i];
-			objs.erase(objs.begin() + i);
+	// update and delete objects (ones that play sound)
+	int audioIndex = curScene == Cave ? 1 : 0;
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j< objsClose[i].size(); ++j) {
+			GraphicObj* obj = objsClose[i][j];
+			obj->timestep(userSpeed, userX, userY, curScene);
+			obj->updateVolume(globalGain);
+			float objAngle = atan2(-obj->positionX, -obj->positionY) * 180 / PI;
+			if (abs(objAngle - userRot[1]) > 100 && obj->dist() > 1000) {
+				audioPlayers[obj->playerIndex][audioIndex][i]->setVolume(0);
+				delete objsClose[i][j];
+				objsClose[i].erase(objsClose[i].begin() + j);
+				j--;
+			}
+		}
+	}
+	// update and delete far objs
+	for (int i = 0; i < 5; ++i) {
+		for (int j = 0; j < objs[i].size(); ++j) {
+			GraphicObj* obj = objs[i][j];
+			obj->timestep(userSpeed, userX, userY, curScene);
+			obj->updateVolume(globalGain);
+			float objAngle = atan2(-obj->positionX, -obj->positionY) * 180 / PI;
+			if (abs(objAngle - userRot[1]) > 100) {
+				delete objs[i][j];
+				objs[i].erase(objs[i].begin() + j);
+				j--;
+			}
 		}
 	}
 
 	// create a new obj
-	if (objs.size() < numObjs) {
+	int totalObjs = 0;
+	for (int i = 0; i < 5; ++i) {
+		totalObjs += objs[i].size();
+		totalObjs += objsClose[i].size();
+	}
+	if (totalObjs < numObjs) {
 		float randDeg = (rand() % 1500 - 750)/100.0;
 		GraphicObj* newObj = chooseRandObj();
 		newObj->setup();
 		float angle = userRot[1] / 90.0 * PI + randDeg;
 		newObj->setPosition(sin(angle)*DIST_INF, cos(angle)*DIST_INF);
-		objs.push_back(newObj);
+		objs[newObj->type].push_back(newObj);
 	}
+	rollercoasterAudio->setVolume(globalGain/10.0);
 
-	audioPlayers[0]->setVolume(globalGain);
-	//audioPlayers[1]->setVolume(globalGain * 300 / abs(tree.positionY));
-	//audioPlayers[2]->setVolume(globalGain * 300 / abs(cloud.positionY));
-	//audioPlayers[3]->setVolume(globalGain * 800 / abs(bird.positionY));
-	//audioPlayers[4]->setVolume(globalGain * 300 / abs(pond.positionY));
+	// find the closest objs not playing
+	float closestObjDists[4] = { 99999, 99999, 99999, 99999 };
+	GraphicObj* closestObj[4];
+	int closestObjIndices[4] = { -1, -1, -1, -1 };
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < objs[i].size(); ++j) {
+			GraphicObj* obj = objs[i][j];
+			float dist = obj->dist();
+			if (dist < closestObjDists[i]) {
+				closestObjDists[i] = dist;
+				closestObj[i] = obj;
+				closestObjIndices[i] = j;
+			}
+		}
+	}
+	// add and play audio for closest objs if needed
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			if (closestObjIndices[i] != -1) {
+				if (audioPlayers[j][audioIndex][i]->getVolume() == 0) {
+					objs[i].erase(objs[i].begin() + closestObjIndices[i]);
+					objsClose[i].push_back(closestObj[i]);
+					closestObj[i]->isPlaying = true;
+					closestObj[i]->playerIndex = j;
+					closestObj[i]->player = audioPlayers[j][audioIndex][i];
+					closestObj[i]->updateVolume(globalGain);
+					break;
+				}
+			}
+		}
+	}
 
 	strutStart -= 2*userSpeed;
 	if (strutStart < -RAIL_STRUT_SPACING) {
@@ -375,11 +439,19 @@ void ofApp::draw() {
 		ofPopMatrix();
 
 		// draw the objects
-		for (GraphicObj* obj : objs) {
-			ofPushMatrix();
-			ofTranslate(obj->positionX, obj->positionZ, obj->positionY);
-			obj->draw(curScene);
-			ofPopMatrix();
+		for (int i = 0; i < 5; ++i) {
+			for (GraphicObj* obj : objs[i]) {
+				ofPushMatrix();
+				ofTranslate(obj->positionX, obj->positionZ, obj->positionY);
+				obj->draw(curScene);
+				ofPopMatrix();
+			}
+			for (GraphicObj* obj : objsClose[i]) {
+				ofPushMatrix();
+				ofTranslate(obj->positionX, obj->positionZ, obj->positionY);
+				obj->draw(curScene);
+				ofPopMatrix();
+			}
 		}
 
     ofPopMatrix(); // Back to initial state at the top-left of our window.
@@ -394,27 +466,19 @@ void ofApp::keyPressed(int key){
 	switch (key) {
 	case '8':
 		userDir = Direction::Up;
-		globalGain += 0.1;
+		//globalGain += 0.1;
 		break;
 	case '4':
 		userDir = Direction::Left;
 		pan -= 0.05;
-		audioPlayers[1]->setPan(-pan);
-		audioPlayers[2]->setPan(pan);
-		audioPlayers[3]->setPan(-pan);
-		audioPlayers[4]->setPan(pan);
 		break;
 	case '6':
 		userDir = Direction::Right;
 		pan += 0.05;
-		audioPlayers[1]->setPan(-pan);
-		audioPlayers[2]->setPan(pan);
-		audioPlayers[3]->setPan(-pan);
-		audioPlayers[4]->setPan(pan);
 		break;
 	case '2':
 		userDir = Direction::Down;
-		globalGain -= 0.1;
+		//globalGain -= 0.1;
 		break;
 	case '5':
 		userDir = Direction::Straight;
@@ -422,13 +486,13 @@ void ofApp::keyPressed(int key){
 	case '+':
 		userSpeed += SPEED_INCREMENT;
 		for (auto audio : audioPlayers) {
-			audio->setSpeed(userSpeed);
+			rollercoasterAudio->setSpeed(userSpeed);
 		}
 		break;
 	case '-':
 		userSpeed -= SPEED_INCREMENT;
 		for (auto audio : audioPlayers) {
-			audio->setSpeed(userSpeed);
+			rollercoasterAudio->setSpeed(userSpeed);
 		}
 		break;
 	case '[':
@@ -438,14 +502,34 @@ void ofApp::keyPressed(int key){
 		numObjs++;
 		break;
 	case 'q':
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j <objsClose[i].size(); ++j) {
+				audioPlayers[j][1][i]->setVolume(0);
+				/*if (objsClose[i][j] != NULL) {
+					objsClose[i][j]->player = audioPlayers[j][1][i];
+				}*/
+			}
+		}
 		curScene = Forest;
 		newBackground = true;
+
 		break;
 	case 'w':
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < objsClose[i].size(); ++j) {
+				audioPlayers[j][0][i]->setVolume(0);
+			}
+		}
 		curScene = Cave;
 		newBackground = true;
 		break;
-	case 'r':
+	case 'e':
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < objsClose[i].size(); ++j) {
+				audioPlayers[j][1][i]->setVolume(0);
+
+			}
+		}
 		curScene = Upsidedown;
 		newBackground = true;
 		break;

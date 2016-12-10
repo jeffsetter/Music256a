@@ -47,9 +47,12 @@ public:
 	ofEasyCam cam;
 	ofLight light;
 
-	ofSoundPlayer sp[5];
-	string audioFiles[5] = { "rollercoaster.mp3", "tree.mp3", "cloud.mp3", "seagull.mp3", "lake.mp3" };
-	ofSoundPlayer* audioPlayers[5] = { &sp[0], &sp[1], &sp[2], &sp[3], &sp[4] };
+	ofSoundPlayer* rollercoasterAudio;
+	//string audioFiles[2][4] = { {"tree.mp3", "cloud.mp3", "seagull.mp3", "lake.mp3" }, 
+	//							{"stalagmite.mp3", "stalactite.mp3", "bat.mp3", "lake.mp3"} };
+	string audioFiles[2][4] = { {"seagull.mp3", "tree.mp3", "cloud.mp3", "lake.mp3" }, 
+								{"bat.mp3", "stalagmite.mp3", "stalactite.mp3", "lake.mp3"} };
+	ofSoundPlayer* audioPlayers[3][2][4];
 	float globalGain = 1;
 
 	float userTilt[3];
@@ -73,7 +76,8 @@ public:
 	float strutStart;
 
 	// create objects
-	vector<GraphicObj*> objs;
+	vector<GraphicObj*> objs[5];
+	vector<GraphicObj*> objsClose[5];
 	int numObjs = 5;
 	Scene curScene = Forest;
 	bool newBackground = false;

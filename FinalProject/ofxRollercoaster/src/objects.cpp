@@ -145,8 +145,7 @@ void Bird::draw(Scene scene) {
 		body.draw();
 		ofRotateZ(40);
 	}
-	ofTranslate(-body.getWidth()/2, 0, 0);
-	body.draw();
+
 	ofTranslate(-body.getWidth() / 2, 0, 0);
 	ofRotateZ(wingRotation);
 	ofTranslate(-wing.getWidth() / 2, 0, 0);
